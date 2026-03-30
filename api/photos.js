@@ -1,5 +1,4 @@
 // LOCATION: /api/photos.js
-// (inside the "api" folder in your project root)
 
 const data = {
   author: {
@@ -13,7 +12,7 @@ const data = {
     {
       id: 1,
       title: "Golden Hour at Arches",
-      description: "foxes!",
+      description: "Landscapes!",
       dateTaken: "2024-11-03",
       thumbnail: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=400&q=75",
       fullSize:  "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1200&q=90",
@@ -22,7 +21,7 @@ const data = {
     {
       id: 2,
       title: "Misty Morning Peaks",
-      description: "foxes!",
+      description: "Landscapes!",
       dateTaken: "2024-10-17",
       thumbnail: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&q=75",
       fullSize:  "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&q=90",
@@ -31,7 +30,7 @@ const data = {
     {
       id: 3,
       title: "Midnight Blue Ridge",
-      description: "foxes!",
+      description: "Landscapes!",
       dateTaken: "2024-12-28",
       thumbnail: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=400&q=75",
       fullSize:  "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=1200&q=90",
@@ -40,7 +39,7 @@ const data = {
     {
       id: 4,
       title: "Sea Glass Shore",
-      description: "foxes!",
+      description: "Landscapes!",
       dateTaken: "2024-09-05",
       thumbnail: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&q=75",
       fullSize:  "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&q=90",
@@ -49,7 +48,7 @@ const data = {
     {
       id: 5,
       title: "Autumn Canopy",
-      description: "foxes!",
+      description: "Landscapes!",
       dateTaken: "2024-10-29",
       thumbnail: "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=400&q=75",
       fullSize:  "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=1200&q=90",
@@ -58,7 +57,7 @@ const data = {
     {
       id: 6,
       title: "Desert Bloom",
-      description: "foxes!",
+      description: "Landscapes!",
       dateTaken: "2024-08-14",
       thumbnail: "https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?w=400&q=75",
       fullSize:  "https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?w=1200&q=90",
@@ -67,7 +66,7 @@ const data = {
     {
       id: 7,
       title: "Fjord Reflection",
-      description: "foxes!",
+      description: "Landscapes!",
       dateTaken: "2024-07-22",
       thumbnail: "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=400&q=75",
       fullSize:  "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=1200&q=90",
@@ -76,7 +75,7 @@ const data = {
     {
       id: 8,
       title: "Salt Flat Infinity",
-      description: "foxes!",
+      description: "Landscapes!",
       dateTaken: "2024-06-10",
       thumbnail: "https://images.unsplash.com/photo-1548011241-f0a96f519dbe?w=400&q=75",
       fullSize:  "https://images.unsplash.com/photo-1548011241-f0a96f519dbe?w=1200&q=90",
@@ -85,7 +84,7 @@ const data = {
     {
       id: 9,
       title: "Volcanic Dawn",
-      description: "foxes!",
+      description: "Landscapes!",
       dateTaken: "2024-05-03",
       thumbnail: "https://images.unsplash.com/photo-1537953773345-d172ccf13cf4?w=400&q=75",
       fullSize:  "https://images.unsplash.com/photo-1537953773345-d172ccf13cf4?w=1200&q=90",
@@ -94,7 +93,7 @@ const data = {
     {
       id: 10,
       title: "Lavender Sea",
-      description: "foxes!",
+      description: "Landscapes!",
       dateTaken: "2024-07-08",
       thumbnail: "https://images.unsplash.com/photo-1499002238440-d264edd596ec?w=400&q=75",
       fullSize:  "https://images.unsplash.com/photo-1499002238440-d264edd596ec?w=1200&q=90",
@@ -103,7 +102,7 @@ const data = {
     {
       id: 11,
       title: "Rainforest Veil",
-      description: "foxes!",
+      description: "Landscapes!",
       dateTaken: "2024-04-18",
       thumbnail: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=400&q=75",
       fullSize:  "https://images.unsplash.com/photo-1448375240586-882707db888b?w=1200&q=90",
@@ -112,7 +111,7 @@ const data = {
     {
       id: 12,
       title: "Canyon Spiral",
-      description: "foxes!",
+      description: "Landscapes!",
       dateTaken: "2024-03-31",
       thumbnail: "https://images.unsplash.com/photo-1474044159687-1ee9f3a51722?w=400&q=75",
       fullSize:  "https://images.unsplash.com/photo-1474044159687-1ee9f3a51722?w=1200&q=90",
@@ -121,7 +120,7 @@ const data = {
     {
       id: 13,
       title: "Aurora Curtain",
-      description: "foxes!",
+      description: "Landscapes!",
       dateTaken: "2024-02-14",
       thumbnail: "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=400&q=75",
       fullSize:  "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=1200&q=90",
@@ -130,7 +129,7 @@ const data = {
     {
       id: 14,
       title: "Terracotta Rooftops",
-      description: "foxes!",
+      description: "Landscapes!",
       dateTaken: "2024-09-19",
       thumbnail: "https://images.unsplash.com/photo-1555990793-da11153b6c95?w=400&q=75",
       fullSize:  "https://images.unsplash.com/photo-1555990793-da11153b6c95?w=1200&q=90",
@@ -139,7 +138,7 @@ const data = {
     {
       id: 15,
       title: "Frozen Waterfall",
-      description: "foxes!",
+      description: "Landscapes!",
       dateTaken: "2025-01-07",
       thumbnail: "https://images.unsplash.com/photo-1489549132488-d00b7eee80f1?w=400&q=75",
       fullSize:  "https://images.unsplash.com/photo-1489549132488-d00b7eee80f1?w=1200&q=90",

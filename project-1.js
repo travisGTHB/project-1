@@ -8,6 +8,35 @@ import { LitElement, html, css } from "lit";
 import { DDDSuper } from "@haxtheweb/d-d-d/d-d-d.js";
 import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
 
+// Inline fallback data — used when /api/photos is unreachable (e.g. static build preview).
+// Rollup can tree-shake this at build time; no separate file import needed.
+const FALLBACK_DATA = {
+  author: {
+    name: "Travis Kelce",
+    username: "traviskelce",
+    avatar: "https://i.pravatar.cc/150?img=11",
+    userSince: "2019-03-14",
+    channel: "TravisKelceOfficial",
+  },
+  photos: [
+    { id: 1,  title: "Golden Hour at Arches",   description: "Landscapes!", dateTaken: "2024-11-03", thumbnail: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=75", fullSize: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=90", location: "Moab, Utah" },
+    { id: 2,  title: "Misty Morning Peaks",     description: "Landscapes!", dateTaken: "2024-10-17", thumbnail: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&q=75", fullSize: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&q=90", location: "Patagonia, Chile" },
+    { id: 3,  title: "Midnight Blue Ridge",     description: "Landscapes!", dateTaken: "2024-12-28", thumbnail: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=400&q=75", fullSize: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=1200&q=90", location: "Shenandoah, Virginia" },
+    { id: 4,  title: "Sea Glass Shore",         description: "Landscapes!", dateTaken: "2024-09-05", thumbnail: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&q=75", fullSize: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&q=90", location: "Reynisfjara, Iceland" },
+    { id: 5,  title: "Autumn Canopy",           description: "Landscapes!", dateTaken: "2024-10-29", thumbnail: "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=400&q=75", fullSize: "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=1200&q=90", location: "Kyoto, Japan" },
+    { id: 6,  title: "Desert Bloom",            description: "Landscapes!", dateTaken: "2024-08-14", thumbnail: "https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?w=400&q=75", fullSize: "https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?w=1200&q=90", location: "Atacama, Chile" },
+    { id: 7,  title: "Fjord Reflection",        description: "Landscapes!", dateTaken: "2024-07-22", thumbnail: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=400&q=75", fullSize: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=1200&q=90", location: "Nærøyfjord, Norway" },
+    { id: 8,  title: "Salt Flat Infinity",      description: "Landscapes!", dateTaken: "2024-06-10", thumbnail: "https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?w=400&q=75", fullSize: "https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?w=1200&q=90", location: "Uyuni, Bolivia" },
+    { id: 9,  title: "Volcanic Dawn",           description: "Landscapes!", dateTaken: "2024-05-03", thumbnail: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=75", fullSize: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=90", location: "East Java, Indonesia" },
+    { id: 10, title: "Lavender Sea",            description: "Landscapes!", dateTaken: "2024-07-08", thumbnail: "https://images.unsplash.com/photo-1499002238440-d264edd596ec?w=400&q=75", fullSize: "https://images.unsplash.com/photo-1499002238440-d264edd596ec?w=1200&q=90", location: "Valensole, France" },
+    { id: 11, title: "Rainforest Veil",         description: "Landscapes!", dateTaken: "2024-04-18", thumbnail: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=400&q=75", fullSize: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=1200&q=90", location: "Monteverde, Costa Rica" },
+    { id: 12, title: "Canyon Spiral",           description: "Landscapes!", dateTaken: "2024-03-31", thumbnail: "https://images.unsplash.com/photo-1474044159687-1ee9f3a51722?w=400&q=75", fullSize: "https://images.unsplash.com/photo-1474044159687-1ee9f3a51722?w=1200&q=90", location: "Page, Arizona" },
+    { id: 13, title: "Aurora Curtain",          description: "Landscapes!", dateTaken: "2024-02-14", thumbnail: "https://images.unsplash.com/photo-1531168556467-80aace0d0144?w=400&q=75", fullSize: "https://images.unsplash.com/photo-1531168556467-80aace0d0144?w=1200&q=90", location: "Whitehorse, Canada" },
+    { id: 14, title: "Terracotta Rooftops",     description: "Landscapes!", dateTaken: "2024-09-19", thumbnail: "https://images.unsplash.com/photo-1600623471616-8c1966c91ff6?w=400&q=75", fullSize: "https://images.unsplash.com/photo-1600623471616-8c1966c91ff6?w=1200&q=90", location: "Dubrovnik, Croatia" },
+    { id: 15, title: "Frozen Waterfall",        description: "Landscapes!", dateTaken: "2025-01-07", thumbnail: "https://images.unsplash.com/photo-1489549132488-d00b7eee80f1?w=400&q=75", fullSize: "https://images.unsplash.com/photo-1489549132488-d00b7eee80f1?w=1200&q=90", location: "South Iceland" },
+  ],
+};
+
 export class Project1 extends DDDSuper(I18NMixin(LitElement)) {
   static get tag() {
     return "project-1";
@@ -26,7 +55,7 @@ export class Project1 extends DDDSuper(I18NMixin(LitElement)) {
     this.likes = {};
     this.loading = true;
     this.error = false;
-    
+
     this.registerLocalization({
       context: this,
       localesPath: new URL("./locales/", import.meta.url).href,
@@ -105,7 +134,6 @@ export class Project1 extends DDDSuper(I18NMixin(LitElement)) {
           padding: var(--ddd-spacing-3) var(--ddd-spacing-4);
         }
 
-        /* Fixed TG Initials Avatar */
         .avatar {
           width: 40px;
           height: 40px;
@@ -157,10 +185,24 @@ export class Project1 extends DDDSuper(I18NMixin(LitElement)) {
           overflow: hidden;
         }
 
+        .skeleton {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+          background-size: 200% 100%;
+          animation: shimmer 1.4s infinite;
+        }
+
+        @keyframes shimmer {
+          0%   { background-position: 200% 0; }
+          100% { background-position: -200% 0; }
+        }
+
         .card-image {
           width: 100%;
           height: 100%;
           object-fit: cover;
+          display: block;
         }
 
         .slide-counter {
@@ -187,10 +229,14 @@ export class Project1 extends DDDSuper(I18NMixin(LitElement)) {
           cursor: pointer;
           font-size: 24px;
           z-index: 5;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          line-height: 1;
         }
 
         .arrow:disabled { opacity: 0.3; cursor: not-allowed; }
-        .arrow-left { left: 10px; }
+        .arrow-left  { left: 10px; }
         .arrow-right { right: 10px; }
 
         .action-bar {
@@ -215,19 +261,42 @@ export class Project1 extends DDDSuper(I18NMixin(LitElement)) {
           padding: 0 15px 15px;
         }
 
-        .photo-title { font-weight: bold; margin: 5px 0; }
-        .caption { font-size: 14px; margin: 5px 0; }
+        .photo-title  { font-weight: bold; margin: 5px 0; color: var(--text-main); }
+        .caption      { font-size: 14px; margin: 5px 0; color: var(--text-main); }
+        .photo-location {
+          font-size: 12px;
+          color: var(--text-muted);
+          margin: 2px 0 6px;
+        }
         .fullsize-link { font-size: 12px; color: var(--accent); text-decoration: none; }
+
+        .error-msg {
+          padding: 40px 20px;
+          text-align: center;
+          color: var(--text-muted);
+        }
       `
     ];
   }
 
-  // ── Logic ──────────────────────────────────────────────────────────────────
+  // ── Helpers ────────────────────────────────────────────────────────────────
+
+  _getInitials(name) {
+    if (!name) return "?";
+    return name
+      .split(" ")
+      .map(w => w[0])
+      .join("")
+      .slice(0, 2)
+      .toUpperCase();
+  }
+
+  // ── Lifecycle ──────────────────────────────────────────────────────────────
 
   connectedCallback() {
     super.connectedCallback();
     this._loadLikes();
-    
+
     const params = new URLSearchParams(window.location.search);
     const idx = parseInt(params.get("activeIndex"), 10);
     if (!isNaN(idx)) this.currentIndex = idx;
@@ -242,10 +311,12 @@ export class Project1 extends DDDSuper(I18NMixin(LitElement)) {
     if (!isNaN(idx)) this.currentIndex = idx;
   }
 
+  // ── Logic ──────────────────────────────────────────────────────────────────
+
   _shuffle(array) {
     let curr = array.length;
     while (curr !== 0) {
-      let rand = Math.floor(Math.random() * curr);
+      const rand = Math.floor(Math.random() * curr);
       curr--;
       [array[curr], array[rand]] = [array[rand], array[curr]];
     }
@@ -254,21 +325,28 @@ export class Project1 extends DDDSuper(I18NMixin(LitElement)) {
 
   async _fetchSlides() {
     this.loading = true;
+    this.error = false;
     try {
+      // Try the real API first (works when Next.js server is running)
       const res = await fetch("/api/photos");
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = await res.json();
-      this.author = data.author || {};
-      
-      this.slides = this._shuffle([...(data.photos || [])]);
-
-      if (this.currentIndex >= this.slides.length) this.currentIndex = 0;
-    } catch (e) {
-      this.error = true;
+      this._applyData(data);
+    } catch (_e) {
+      // Fallback: use the inline constant so the component works without a server.
+      // This is also Rollup-safe — no dynamic import() that the bundler can't resolve.
+      this._applyData(FALLBACK_DATA);
     } finally {
       this.loading = false;
       await this.updateComplete;
       this._createDots();
     }
+  }
+
+  _applyData(data) {
+    this.author = data.author || {};
+    this.slides = this._shuffle([...(data.photos || [])]);
+    if (this.currentIndex >= this.slides.length) this.currentIndex = 0;
   }
 
   _loadLikes() {
@@ -291,51 +369,103 @@ export class Project1 extends DDDSuper(I18NMixin(LitElement)) {
     this._updateDots();
   }
 
-  _createDots() { /* Logic for dot rendering if needed */ }
-  _updateDots() { /* Logic for active dot state */ }
+  _createDots() { /* dot rendering hook */ }
+  _updateDots()  { /* active dot state hook */ }
 
   // ── Render ─────────────────────────────────────────────────────────────────
 
   render() {
     const slide = this.slides[this.currentIndex];
     const liked = slide ? !!this.likes[slide.id] : false;
+    const initials = this._getInitials(this.author.name);
+
+    if (this.error) {
+      return html`
+        <div class="gallery-wrapper">
+          <div class="card">
+            <div class="error-msg">⚠️ Could not load photos. Please try again later.</div>
+          </div>
+        </div>
+      `;
+    }
 
     return html`
       <div class="gallery-wrapper">
         <div class="card">
+
+          <!-- Header -->
           <div class="card-header">
-            <div class="avatar" aria-label="Initials TG">
-              TG
+            <div class="avatar" aria-label="${this.author.name || 'Author'} avatar">
+              ${initials}
             </div>
             <div class="header-info">
               <span class="username">${this.author.username || "User"}</span>
-              <span class="user-since">Member since ${this.author.userSince ? new Date(this.author.userSince).getFullYear() : '2026'}</span>
+              <span class="user-since">
+                Member since ${this.author.userSince
+                  ? new Date(this.author.userSince).getFullYear()
+                  : "—"}
+              </span>
             </div>
-            <span class="channel-badge">${this.author.channel}</span>
+            ${this.author.channel
+              ? html`<span class="channel-badge">${this.author.channel}</span>`
+              : ""}
           </div>
 
+          <!-- Image -->
           <div class="card-image-wrap">
             ${this.loading ? html`<div class="skeleton"></div>` : ""}
             ${slide ? html`
-              <img class="card-image" src="${slide.thumbnail}" alt="${slide.title}" loading="lazy">
-              <span class="slide-counter">${this.currentIndex + 1} / ${this.slides.length}</span>
-              <button class="arrow arrow-left" ?disabled="${this.currentIndex === 0}" @click="${() => this._goTo(this.currentIndex - 1)}">&lsaquo;</button>
-              <button class="arrow arrow-right" ?disabled="${this.currentIndex === this.slides.length - 1}" @click="${() => this._goTo(this.currentIndex + 1)}">&rsaquo;</button>
+              <img
+                class="card-image"
+                src="${slide.thumbnail}"
+                alt="${slide.title}"
+                loading="lazy"
+              >
+              <span class="slide-counter">
+                ${this.currentIndex + 1} / ${this.slides.length}
+              </span>
+              <button
+                class="arrow arrow-left"
+                ?disabled="${this.currentIndex === 0}"
+                @click="${() => this._goTo(this.currentIndex - 1)}"
+                aria-label="Previous photo"
+              >&#8249;</button>
+              <button
+                class="arrow arrow-right"
+                ?disabled="${this.currentIndex === this.slides.length - 1}"
+                @click="${() => this._goTo(this.currentIndex + 1)}"
+                aria-label="Next photo"
+              >&#8250;</button>
             ` : ""}
           </div>
 
+          <!-- Actions -->
           <div class="action-bar">
-            <button class="action-btn ${liked ? 'liked' : ''}" @click="${() => this._toggleLike(slide.id)}">
-              ${liked ? '❤️ Liked' : '🤍 Like'}
+            <button
+              class="action-btn ${liked ? "liked" : ""}"
+              @click="${() => slide && this._toggleLike(slide.id)}"
+              aria-label="${liked ? "Unlike" : "Like"} this photo"
+            >
+              ${liked ? "❤️ Liked" : "🤍 Like"}
             </button>
             <button class="action-btn">🔗 Share</button>
           </div>
 
+          <!-- Footer -->
           <div class="card-footer">
-            <p class="photo-title">${slide?.title}</p>
-            <p class="caption"><strong>${this.author.username}</strong> ${slide?.description}</p>
-            <a class="fullsize-link" href="${slide?.fullSize}" target="_blank">View Full Size →</a>
+            <p class="photo-title">${slide?.title ?? ""}</p>
+            ${slide?.location
+              ? html`<p class="photo-location">📍 ${slide.location}</p>`
+              : ""}
+            <p class="caption">
+              <strong>${this.author.username ?? ""}</strong>
+              ${slide?.description ?? ""}
+            </p>
+            <a class="fullsize-link" href="${slide?.fullSize ?? "#"}" target="_blank" rel="noopener">
+              View Full Size →
+            </a>
           </div>
+
         </div>
       </div>
     `;

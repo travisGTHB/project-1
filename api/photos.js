@@ -1,4 +1,12 @@
-// LOCATION: /api/photos.js
+/**
+ * Copyright 2026 travisGTHB
+ * @license Apache-2.0, see LICENSE for full text.
+ *
+ * LOCATION: /api/photos-data.js
+ *
+ * Standalone data export — used as a fallback when /api/photos
+ * is unavailable (i.e. running the demo without a Next.js server).
+ */
 
 const data = {
   author: {
@@ -14,8 +22,8 @@ const data = {
       title: "Golden Hour at Arches",
       description: "Landscapes!",
       dateTaken: "2024-11-03",
-      thumbnail: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=400&q=75",
-      fullSize:  "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1200&q=90",
+      thumbnail: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=75",
+      fullSize:  "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=90",
       location: "Moab, Utah",
     },
     {
@@ -68,8 +76,8 @@ const data = {
       title: "Fjord Reflection",
       description: "Landscapes!",
       dateTaken: "2024-07-22",
-      thumbnail: "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=400&q=75",
-      fullSize:  "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=1200&q=90",
+      thumbnail: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=400&q=75",
+      fullSize:  "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=1200&q=90",
       location: "Nærøyfjord, Norway",
     },
     {
@@ -77,8 +85,8 @@ const data = {
       title: "Salt Flat Infinity",
       description: "Landscapes!",
       dateTaken: "2024-06-10",
-      thumbnail: "https://images.unsplash.com/photo-1548011241-f0a96f519dbe?w=400&q=75",
-      fullSize:  "https://images.unsplash.com/photo-1548011241-f0a96f519dbe?w=1200&q=90",
+      thumbnail: "https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?w=400&q=75",
+      fullSize:  "https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?w=1200&q=90",
       location: "Uyuni, Bolivia",
     },
     {
@@ -86,8 +94,8 @@ const data = {
       title: "Volcanic Dawn",
       description: "Landscapes!",
       dateTaken: "2024-05-03",
-      thumbnail: "https://images.unsplash.com/photo-1537953773345-d172ccf13cf4?w=400&q=75",
-      fullSize:  "https://images.unsplash.com/photo-1537953773345-d172ccf13cf4?w=1200&q=90",
+      thumbnail: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=75",
+      fullSize:  "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=90",
       location: "East Java, Indonesia",
     },
     {
@@ -122,8 +130,8 @@ const data = {
       title: "Aurora Curtain",
       description: "Landscapes!",
       dateTaken: "2024-02-14",
-      thumbnail: "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=400&q=75",
-      fullSize:  "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=1200&q=90",
+      thumbnail: "https://images.unsplash.com/photo-1531168556467-80aace0d0144?w=400&q=75",
+      fullSize:  "https://images.unsplash.com/photo-1531168556467-80aace0d0144?w=1200&q=90",
       location: "Whitehorse, Canada",
     },
     {
@@ -131,8 +139,8 @@ const data = {
       title: "Terracotta Rooftops",
       description: "Landscapes!",
       dateTaken: "2024-09-19",
-      thumbnail: "https://images.unsplash.com/photo-1555990793-da11153b6c95?w=400&q=75",
-      fullSize:  "https://images.unsplash.com/photo-1555990793-da11153b6c95?w=1200&q=90",
+      thumbnail: "https://images.unsplash.com/photo-1600623471616-8c1966c91ff6?w=400&q=75",
+      fullSize:  "https://images.unsplash.com/photo-1600623471616-8c1966c91ff6?w=1200&q=90",
       location: "Dubrovnik, Croatia",
     },
     {
@@ -147,8 +155,4 @@ const data = {
   ],
 };
 
-export default function handler(req, res) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Cache-Control", "s-maxage=3600");
-  res.status(200).json(data);
-}
+export default data;
